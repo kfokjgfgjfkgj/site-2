@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="stylesheet" href="style.css" />
+<div id = 'topbar'>
+<p> просто сайт
+</div>
+    <meta charset="UTF-8">
+    <title>Первая страница</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<iframe src="https://gifer.com/embed/XOsX" width=480 height=601.567 frameBorder="0" allowFullScreen></iframe><p><a href="https://gifer.com">через GIFER</a></p>
+<progress></progress>
+<label for="list">число:</label>
+<input list="list">
+<datalist id="list">
+  <option value="Один">
+  <option value="Два">
+  <option value="Три">
+</datalist>
+<marquee>бегающия строка</marquee>
+
+</head>
+<body>
+    <div id="videoPlayer">
+        <video id="video" src="./video/video.mp4"></video>
+        <div id="controls">
+            <div class="video-track">
+                <div class="timeline"></div>
+            </div>
+            <div class="buttons">
+                <button class="play">Play</button>
+                <button class="pause">Pause</button>
+                <button class="rewind">&#60;rewind</button>
+                <button class="forward">forward&#62;</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let video = document.getElementById("video");
+        let videoTrack = document.querySelector(".video-track");
+        let time = document.querySelector(".timeline");
+        let btnPlay = document.querySelector(".play");
+        let btnPause = document.querySelector(".pause");
+        let btnRewind = document.querySelector(".rewind");
+        let btnForward = document.querySelector(".forward");
+        
+        btnPlay.addEventListener("click", function() {
+            video.play();
+            videoPlay = setInterval(function() {
+                let videoTime = Math.round(video.currentTime)
+                let videoLength = Math.round(video.duration)
+                time.style.width = (videoTime * 100) / videoLength + '%';
+            }, 10)
+        });
+
+        btnPause.addEventListener("click", function() {
+            video.pause();
+            clearInterval(videoPlay)
+        });
+
+        btnRewind.addEventListener("click", function() {
+            video.currentTime -= 5;
+        });
+
+        btnForward.addEventListener("click", function() {
+            video.currentTime += 5;
+        });
+
+        videoTrack.addEventListener("click", function(e) {
+            let posX = e.clientX - 8;
+            let timePos = (posX * 100) / 800;
+            time.style.width = timePos + '%';
+            video.currentTime = (timePos * Math.round(video.duration)) / 100
+        });
+    </script>
+	<p>конец</p>
+<div id = 'ctr'>
+<a href="2.html">2 странича</a>
+<a href="index.html">главная страница</a>
+<a href="game.html">игра</a>
+</div>
+</body>
+</html>
